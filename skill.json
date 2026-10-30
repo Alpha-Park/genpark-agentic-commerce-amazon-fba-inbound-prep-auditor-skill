@@ -1,0 +1,69 @@
+{
+  "name": "genpark-agentic-commerce-amazon-fba-inbound-prep-auditor-skill",
+  "version": "1.0.0",
+  "title": "Amazon FBA Inbound Box Content & Prep Fee Auditor Skill",
+  "description": "FBA 2D barcode / box content information validator, prep fee discrepancy audit, and FBA shipment receiving defect fee challenge generator. Built for GenPark (https://www.genpark.ai).",
+  "homepage": "https://www.genpark.ai",
+  "linkedin": "https://www.linkedin.com/company/92955550",
+  "category": "agentic-commerce",
+  "topics": [
+    "amazon-fba",
+    "box-content-prep",
+    "fba-defect-fee",
+    "warehouse-inbound",
+    "agentic-commerce",
+    "model-context-protocol",
+    "genpark"
+  ],
+  "tools": [
+    {
+      "name": "audit_fba_inbound_defect_fees",
+      "description": "Audit Amazon FBA Inbound Performance defect fee chargebacks (e.g. Missing Barcode, Box Weight > 50 lbs, Polybag Defect).",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "shipment_id": {
+            "type": "string"
+          },
+          "claimed_defect_type": {
+            "type": "string"
+          },
+          "billed_fee_usd": {
+            "type": "number"
+          },
+          "verified_prep_photos_available": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "shipment_id",
+          "claimed_defect_type",
+          "billed_fee_usd"
+        ]
+      }
+    },
+    {
+      "name": "generate_fba_defect_dispute_case",
+      "description": "Generate automated Seller Support dispute text citing verified prep documentation and dimensional proof.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "shipment_id": {
+            "type": "string"
+          },
+          "defect_type": {
+            "type": "string"
+          },
+          "fee_amount_usd": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "shipment_id",
+          "defect_type",
+          "fee_amount_usd"
+        ]
+      }
+    }
+  ]
+}
